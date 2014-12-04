@@ -7,7 +7,26 @@ This provides a button to expand the map to the full browser window and hide all
 
 ## Instructions
 
-Place all of your page content into an element with the class "expand-map-hide". This element will be hidden when the map is expanded. The map will be moved into the body of the document and the body and map will have a width and height of 100%.
+1. Create an element within the documents body tag.
+2. Give the element a class of "expand-map-hide".
+3. Place all of your page content into the element. This is the content that will be hidden when the map is expanded.
+4. Create another element for the button and place it where you would like.
+5. Startup the widget like normal.
+
+The map will be moved into the body of the document and the body and map will have a width and height of 100%.
+
+### HTML
+
+```html
+  <body>
+    <div class="container expand-map-hide">
+      <div id="map" class="map">
+        <div id="emb"></div>
+      </div>
+    </div>
+  </body>
+```
+### JavaScript
 
 ```javascript
   var emb;
