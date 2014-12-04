@@ -20,10 +20,10 @@ define([
     "dojo/on",
 
     // load template
-    "dojo/text!application/templates/FullScreenMap.html",
+    "dojo/text!application/templates/ExpandMapButton.html",
 
     // localization
-    "dojo/i18n!application/nls/FullScreenMap",
+    "dojo/i18n!application/nls/ExpandMapButton",
 
     // dom manipulation
     "dojo/dom-style",
@@ -44,14 +44,15 @@ define([
     i18n,
     domStyle, domClass, domAttr, domConstruct
   ) {
-    return declare("application.FullScreenMap", [_WidgetBase, _TemplatedMixin, Evented], {
+    return declare("esri.dijit.ExpandMapButton", [_WidgetBase, _TemplatedMixin, Evented], {
       // my html template string
       templateString: dijitTemplate,
 
       // default options
       options: {
         map: null,
-        visible: true
+        visible: true,
+        expanded: false
       },
 
       /* ---------------- */
@@ -60,9 +61,9 @@ define([
       constructor: function (options, srcRefNode) {
         // css classes
         this.css = {
-          fs: "fs",
+          expandMap: "expand-map-button",
           toggle: "toggle",
-          fsActive: "fs-active"
+          expanded: "map-expanded"
         };
         // language
         this._i18n = i18n;
@@ -73,9 +74,10 @@ define([
         // set properties
         this.set("map", defaults.map);
         this.set("visible", defaults.visible);
-        this.set("fullscreen", false);
+        this.set("expanded", defaults.expanded);
         // watch for changes
         this.watch("visible", this._visible);
+        this.watch("expanded", this._stateChanged);
       },
       // _TemplatedMixin implements buildRendering() for you. Use this to override
       // buildRendering: function() {},
@@ -83,7 +85,9 @@ define([
       postCreate: function () {
         // own this accessible click event button
         // Custom press, release, and click synthetic events which trigger on a left mouse click, touch, or space/enter keyup.
-        this.own(on(this.buttonNode, a11yclick, lang.hitch(this, this._toggle)));
+        this.own(on(this.buttonNode, a11yclick, lang.hitch(this, function(){
+          this.toggle(!this.expanded);
+        })));
         // get parent node of map
         if (this.map && this.map.container) {
           this._parentNode = this.map.container.parentNode;
@@ -108,11 +112,6 @@ define([
           }));
         }
       },
-      // connections/subscriptions will be cleaned up during the destroy() lifecycle phase
-      destroy: function () {
-        // call the superclass method of the same name.
-        this.inherited(arguments);
-      },
       /* ---------------- */
       /* Public Functions */
       /* ---------------- */
@@ -122,10 +121,25 @@ define([
       hide: function () {
         this.set("visible", false);
       },
+      expand: function () {
+        this.toggle(true);
+      },
+      collapse: function () {
+        this.toggle(false);
+      },
+      toggle: function(value){
+        // change class
+        domClass.toggle(window.document.body, this.css.expanded, value);
+        // handle stuff
+        this._stateChanged();
+      },
       /* ---------------- */
       /* Private Functions */
       /* ---------------- */
       _init: function () {
+        // set expanded state
+        this.toggle(this.expanded);
+        // set loaded
         this.set("loaded", true);
         // emit event
         this.emit("load", {});
@@ -137,28 +151,21 @@ define([
           domStyle.set(this.domNode, "display", "none");
         }
       },
-      _changed: function () {
-        // determine fullscreen state
-        var state = domClass.contains(window.document.body, this.css.fsActive);
-        // set fullscreen status
-        this.set("fullscreen", state);
-        // emit event
-        this.emit("fullscreen-change", {
-          fullscreen: state
-        });
-        // if fullscreen
+      _stateChanged: function () {
+        // determine expanded state
+        var state = domClass.contains(window.document.body, this.css.expanded);
+        // set expanded status
+        this.set("expanded", state);
+        // if expanded
         if (state) {
-          domAttr.set(this.buttonNode, "title", this._i18n.exit);
+          domAttr.set(this.buttonNode, "title", this._i18n.collapse);
           domConstruct.place(this.map.container, window.document.body);
         } else {
+          domAttr.set(this.buttonNode, "title", this._i18n.expand);
           domConstruct.place(this.map.container, this._parentNode);
         }
         // resize map
         this.map.resize(true);
-      },
-      _toggle: function () {
-        domClass.toggle(window.document.body, this.css.fsActive);
-        this._changed();
       }
     });
   });
