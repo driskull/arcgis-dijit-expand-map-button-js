@@ -40,7 +40,7 @@ No option is required.
 |---|---|---|---|---|
 |map|Map|null|Map Class|Yes|
 |expanded|Boolean|false|Expand the map by default|No|
-|visible||Boolean|true|Show the widget.|No|
+|visible|Boolean|true|Show the widget.|No|
 |recenter|Boolean|true|Recenter map after expand/collapse.|No|
 |recenterTimeout|Integer|500|Recenter map after expand/collapse.|No|
 
