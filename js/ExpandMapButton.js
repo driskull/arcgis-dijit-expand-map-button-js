@@ -33,7 +33,7 @@ define([
         map: null,
         visible: true,
         expanded: false,
-        recenter: true,
+        recenter: false,
         recenterTimeout: 500
       },
 
