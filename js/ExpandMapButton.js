@@ -1,37 +1,17 @@
-// http://dojotoolkit.org/reference-guide/1.9/quickstart/writingWidgets.html
 define([
-    // For emitting events
     "dojo/Evented",
-
-    // needed to create a class
     "dojo/_base/declare",
     "dojo/_base/lang",
-
-    // widget class
     "dijit/_WidgetBase",
-
-    // accessibility click
     "dijit/a11yclick",
-
-    // templated widget
     "dijit/_TemplatedMixin",
-
-    // handle events
     "dojo/on",
-
-    // load template
     "dojo/text!application/templates/ExpandMapButton.html",
-
-    // localization
     "dojo/i18n!application/nls/ExpandMapButton",
-
-    // dom manipulation
     "dojo/dom-style",
     "dojo/dom-class",
     "dojo/dom-attr",
     "dojo/dom-construct",
-
-    // wait for dom to be ready
     "dojo/domReady!"
 ],
   function (

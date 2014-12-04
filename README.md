@@ -1,12 +1,76 @@
-# arcgis-dijit-sample-js
+# arcgis-dijit-expand-map-button-js
 
-## Features
-An example Dijit boilerplate for the ArcGIS API for JavaScript
+## About
+This provides a button to expand the map to the full browser window and hide all your other webpage content.
 
-[View Demo](http://esri.github.com/arcgis-dijit-sample-js/)
+[View Demo](http://driskull.github.com/arcgis-dijit-expand-map-button-js/)
 
 ## Instructions
-See the powerpoint in the root directory for more information. This demo theater was presented at the 2014 Esri User Conference in San Diego CA.
+
+Place all of your page content into an element with the class "expand-map-hide". This element will be hidden when the map is expanded. The map will be moved into the body of the document and the body will have a width and height of 100%.
+
+
+'''javascript
+    var emb;
+
+    require(["esri/map", "application/ExpandMapButton"], function (Map, ExpandMapButton) {
+
+      var myMap = new Map("map", {
+        center: [-56.049, 38.485],
+        zoom: 3,
+        basemap: "streets"
+      });
+
+      emb = new ExpandMapButton({
+        expanded: false,
+        map: myMap
+      }, "emb");
+
+    });
+'''
+
+
+## Constructor
+
+ExpandMapButton(options, srcNode);
+
+### Constructor Options (Object)
+
+No option is required.
+
+|property|status|type|value|description|
+|---|---|---|---|---|
+|map||Map|null|Map Class|
+|expanded||Boolean|false|Expand the map by default|
+|visible||Boolean|true|Show the widget.|
+
+## Properties
+|property|type|description|readonly|
+|---|---|---|---|---|
+|map|Map|Map Class|
+|expanded|Boolean|Expand the map by default||
+|visible|Boolean|Show the widget.||
+
+## Methods
+
+### startup
+startup(): Start the widget.
+### destroy
+destroy(): Destroy the widget.
+### show
+show(): Show the widget.
+### hide
+hide(): hide the widget.
+### toggle
+toggle(Boolean): expand/collapse the map.
+### expand
+expand(): expand the map.
+### collapse
+collapse(): collapse the map.
+
+## Events
+### load
+    // no params
 
  [New to Github? Get started here.](https://github.com/)
 
@@ -47,5 +111,5 @@ limitations under the License.
 
 A copy of the license is available in the repository's [license.txt](https://raw.github.com/Esri/arcgis-dijit-sample-js/master/license.txt) file.
 
-[](Esri Tags: ArcGIS JavaScript API Dijit module boilerplate Widget Public)
+[](Esri Tags: ArcGIS JavaScript API Dijit module Widget Public)
 [](Esri Language: JavaScript)
