@@ -7,8 +7,7 @@ This provides a button to expand the map to the full browser window and hide all
 
 ## Instructions
 
-Place all of your page content into an element with the class "expand-map-hide". This element will be hidden when the map is expanded. The map will be moved into the body of the document and the body will have a width and height of 100%.
-
+Place all of your page content into an element with the class "expand-map-hide". This element will be hidden when the map is expanded. The map will be moved into the body of the document and the body and map will have a width and height of 100%.
 
 ```javascript
   var emb;
@@ -29,7 +28,6 @@ Place all of your page content into an element with the class "expand-map-hide".
   });
 ```
 
-
 ## Constructor
 
 ExpandMapButton(options, srcNode);
@@ -38,11 +36,12 @@ ExpandMapButton(options, srcNode);
 
 No option is required.
 
-|property|status|type|value|description|required|
-|---|---|---|---|---|---|
-|map||Map|null|Map Class|true|
-|expanded||Boolean|false|Expand the map by default||
+|property|type|value|description|required|
+|---|---|---|---|---|
+|map|Map|null|Map Class|true|
+|expanded|Boolean|false|Expand the map by default||
 |visible||Boolean|true|Show the widget.||
+|recenter|Boolean|true|Recenter map after expand/collapse.||
 
 ## Properties
 |property|type|description|readonly|
@@ -50,6 +49,7 @@ No option is required.
 |map|Map|Map Class|false|
 |expanded|Boolean|Expand the map by default|false|
 |visible|Boolean|Show the widget.|false|
+|recenter|Boolean|Recenter map after expand/collapse.||
 
 ## Methods
 

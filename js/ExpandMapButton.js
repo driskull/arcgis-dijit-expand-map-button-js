@@ -32,7 +32,9 @@ define([
       options: {
         map: null,
         visible: true,
-        expanded: false
+        expanded: false,
+        recenter: true,
+        recenterTimeout: 500
       },
 
       /* ---------------- */
@@ -55,6 +57,8 @@ define([
         this.set("map", defaults.map);
         this.set("visible", defaults.visible);
         this.set("expanded", defaults.expanded);
+        this.set("recenter", defaults.recenter);
+        this.set("recenterTimeout", defaults.recenterTimeout);
         // watch for changes
         this.watch("visible", this._visible);
         this.watch("expanded", this._stateChanged);
@@ -135,9 +139,21 @@ define([
           domStyle.set(this.domNode, "display", "none");
         }
       },
+      _recenter: function () {
+        if (this.recenter && this._recenterPoint) {
+          // reset center point
+          setTimeout(lang.hitch(this, function () {
+            this.map.centerAt(this._recenterPoint).then(lang.hitch(this, function () {
+              this._recenterPoint = null;
+            }));
+          }), this.recenterTimeout);
+        }
+      },
       _stateChanged: function () {
-        // save center point
-        var pt = this.map.extent.getCenter();
+        if (!this._recenterPoint) {
+          // save center point
+          this._recenterPoint = this.map.extent.getCenter();
+        }
         // determine expanded state
         var state = domClass.contains(window.document.body, this.css.expanded);
         // set expanded status
@@ -152,10 +168,8 @@ define([
         }
         // resize map
         this.map.resize(true);
-        // reset center point
-        setTimeout(lang.hitch(this, function () {
-          this.map.centerAt(pt);
-        }), 500);
+        // recenter map
+        this._recenter();
       }
     });
   });
