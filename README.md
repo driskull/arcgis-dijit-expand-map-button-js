@@ -11,22 +11,22 @@ Place all of your page content into an element with the class "expand-map-hide".
 
 
 ```javascript
-    var emb;
+  var emb;
 
-    require(["esri/map", "application/ExpandMapButton"], function (Map, ExpandMapButton) {
+  require(["esri/map", "application/ExpandMapButton"], function (Map, ExpandMapButton) {
 
-      var myMap = new Map("map", {
-        center: [-56.049, 38.485],
-        zoom: 3,
-        basemap: "streets"
-      });
-
-      emb = new ExpandMapButton({
-        expanded: false,
-        map: myMap
-      }, "emb");
-
+    var myMap = new Map("map", {
+      center: [-56.049, 38.485],
+      zoom: 3,
+      basemap: "streets"
     });
+
+    emb = new ExpandMapButton({
+      expanded: false,
+      map: myMap
+    }, "emb");
+
+  });
 ```
 
 
@@ -38,18 +38,18 @@ ExpandMapButton(options, srcNode);
 
 No option is required.
 
-|property|status|type|value|description|
-|---|---|---|---|---|
-|map||Map|null|Map Class|
-|expanded||Boolean|false|Expand the map by default|
-|visible||Boolean|true|Show the widget.|
+|property|status|type|value|description|required|
+|---|---|---|---|---|---|
+|map||Map|null|Map Class|true|
+|expanded||Boolean|false|Expand the map by default||
+|visible||Boolean|true|Show the widget.||
 
 ## Properties
 |property|type|description|readonly|
 |---|---|---|---|---|
-|map|Map|Map Class|
-|expanded|Boolean|Expand the map by default||
-|visible|Boolean|Show the widget.||
+|map|Map|Map Class|false|
+|expanded|Boolean|Expand the map by default|false|
+|visible|Boolean|Show the widget.|false|
 
 ## Methods
 
@@ -70,7 +70,7 @@ collapse(): collapse the map.
 
 ## Events
 ### load
-    // no params
+Occurs when the widget is loaded.
 
  [New to Github? Get started here.](https://github.com/)
 
