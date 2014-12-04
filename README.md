@@ -38,18 +38,20 @@ No option is required.
 
 |property|type|value|description|required|
 |---|---|---|---|---|
-|map|Map|null|Map Class|true|
-|expanded|Boolean|false|Expand the map by default||
-|visible||Boolean|true|Show the widget.||
-|recenter|Boolean|true|Recenter map after expand/collapse.||
+|map|Map|null|Map Class|Yes|
+|expanded|Boolean|false|Expand the map by default|No|
+|visible||Boolean|true|Show the widget.|No|
+|recenter|Boolean|true|Recenter map after expand/collapse.|No|
+|recenterTimeout|Integer|500|Recenter map after expand/collapse.|No|
 
 ## Properties
 |property|type|description|readonly|
 |---|---|---|---|---|
-|map|Map|Map Class|false|
-|expanded|Boolean|Expand the map by default|false|
-|visible|Boolean|Show the widget.|false|
-|recenter|Boolean|Recenter map after expand/collapse.||
+|map|Map|Map Class|No|
+|expanded|Boolean|Expand the map by default|No|
+|visible|Boolean|Show the widget.|No|
+|recenter|Boolean|Recenter map after expand/collapse.|No|
+|recenterTimeout|Integer|Recenter map after expand/collapse.|No|
 
 ## Methods
 
