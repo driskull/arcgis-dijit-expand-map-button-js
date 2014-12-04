@@ -3,7 +3,7 @@
 ## About
 This provides a button to expand the map to the full browser window and hide all your other webpage content.
 
-[![App](https://raw.github.com/esri/arcgis-dijit-expand-map-button-js/master/images/demo.png)](http://driskull.github.com/arcgis-dijit-expand-map-button-js/)
+[![App](https://raw.github.com/driskull/arcgis-dijit-expand-map-button-js/master/images/demo.png)](http://driskull.github.com/arcgis-dijit-expand-map-button-js/)
 
 [View Demo](http://driskull.github.com/arcgis-dijit-expand-map-button-js/)
 
