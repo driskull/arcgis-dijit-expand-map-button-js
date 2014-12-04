@@ -18,33 +18,33 @@ The map will be moved into the body of the document and the body and map will ha
 ### HTML
 
 ```html
-  <body>
-    <div class="container expand-map-hide">
-      <div id="map" class="map">
-        <div id="emb"></div>
-      </div>
+<body>
+  <div class="container expand-map-hide">
+    <div id="map" class="map">
+      <div id="emb"></div>
     </div>
-  </body>
+  </div>
+</body>
 ```
 ### JavaScript
 
 ```javascript
-  var emb;
+var emb;
 
-  require(["esri/map", "application/ExpandMapButton"], function (Map, ExpandMapButton) {
+require(["esri/map", "application/ExpandMapButton"], function (Map, ExpandMapButton) {
 
-    var myMap = new Map("map", {
-      center: [-56.049, 38.485],
-      zoom: 3,
-      basemap: "streets"
-    });
-
-    emb = new ExpandMapButton({
-      expanded: false,
-      map: myMap
-    }, "emb");
-
+  var myMap = new Map("map", {
+    center: [-56.049, 38.485],
+    zoom: 3,
+    basemap: "streets"
   });
+
+  emb = new ExpandMapButton({
+    expanded: false,
+    map: myMap
+  }, "emb");
+
+});
 ```
 
 ## Constructor
