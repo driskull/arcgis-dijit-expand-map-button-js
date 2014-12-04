@@ -10,7 +10,7 @@ This provides a button to expand the map to the full browser window and hide all
 Place all of your page content into an element with the class "expand-map-hide". This element will be hidden when the map is expanded. The map will be moved into the body of the document and the body will have a width and height of 100%.
 
 
-'''javascript
+```javascript
     var emb;
 
     require(["esri/map", "application/ExpandMapButton"], function (Map, ExpandMapButton) {
@@ -27,7 +27,7 @@ Place all of your page content into an element with the class "expand-map-hide".
       }, "emb");
 
     });
-'''
+```
 
 
 ## Constructor
