@@ -85,7 +85,7 @@ define([
       postCreate: function () {
         // own this accessible click event button
         // Custom press, release, and click synthetic events which trigger on a left mouse click, touch, or space/enter keyup.
-        this.own(on(this.buttonNode, a11yclick, lang.hitch(this, function(){
+        this.own(on(this.buttonNode, a11yclick, lang.hitch(this, function () {
           this.toggle(!this.expanded);
         })));
         // get parent node of map
@@ -127,7 +127,11 @@ define([
       collapse: function () {
         this.toggle(false);
       },
-      toggle: function(value){
+      toggle: function (value) {
+        // set state
+        if (typeof value === "undefined") {
+          value = !this.expanded;
+        }
         // change class
         domClass.toggle(window.document.body, this.css.expanded, value);
         // handle stuff
@@ -152,6 +156,8 @@ define([
         }
       },
       _stateChanged: function () {
+        // save center point
+        var pt = this.map.extent.getCenter();
         // determine expanded state
         var state = domClass.contains(window.document.body, this.css.expanded);
         // set expanded status
@@ -166,6 +172,10 @@ define([
         }
         // resize map
         this.map.resize(true);
+        // reset center point
+        setTimeout(lang.hitch(this, function () {
+          this.map.centerAt(pt);
+        }), 500);
       }
     });
   });
